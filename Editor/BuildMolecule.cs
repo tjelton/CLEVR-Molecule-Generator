@@ -33,6 +33,8 @@ public class BuildMolecule : MonoBehaviour
         {
             var prefabRoot = editingScope.prefabContentsRoot;
 
+
+            int index = 0;
             // Loop through each element in the array, creating a primitive sphere for each element.
             foreach (Element element in elements)
             {
@@ -64,11 +66,15 @@ public class BuildMolecule : MonoBehaviour
                 Color col;
                 ColorUtility.TryParseHtmlString(colour, out col);
 
+                /*
+                 * Need to fix materials!
+                 */
+
                 // Only construct the material if a material with the same name doesn't already exist.
-                Material colouredMaterial = Resources.Load<Material>(materialFilePath);
+                Material colouredMaterial = Resources.Load<Material>("Assets/" + materialFilePath);
                 if (colouredMaterial == null)
                 {
-                    materialFilePath = "Assets/Scenes/Scripts/Editor/Resources/" + materialFilePath + ".mat";
+                    materialFilePath = "Assets/" + materialFilePath + index + ".mat";
                     Material newMaterial = new Material(Shader.Find("Diffuse"));
                     newMaterial.SetColor("_Color", col);
                     AssetDatabase.CreateAsset(newMaterial, materialFilePath);
@@ -79,7 +85,11 @@ public class BuildMolecule : MonoBehaviour
                 var renderer = sphere.GetComponent<MeshRenderer>();
                 renderer.material = colouredMaterial;
 
+                index++;
+
             }
+
+            index = 0;
 
             // Loop through each bond in the array, adding the bonds to the molecule.
             foreach (Bond bond in bonds)
@@ -158,13 +168,17 @@ public class BuildMolecule : MonoBehaviour
                     // Bond alpha
                     col.a = bond.getAlpha();
 
+                    /*
+                     * Need to fix materials!
+                     */
+
                     // Only construct the material if a material with the same name doesn't already exist.
                     string alphaAsString = Convert.ToString(bond.getAlpha());
                     string materialFilePath = colour + alphaAsString + "t"; // "t" to indicate the material has transparency properties.
                     Material colouredMaterial = Resources.Load<Material>(materialFilePath);
                     if (colouredMaterial == null)
                     {
-                        materialFilePath = "Assets/Scenes/Scripts/Editor/Resources/" + materialFilePath + ".mat";
+                        materialFilePath = "Assets/" + materialFilePath + index + ".mat";
 
                         // Transparent because we want to be able to adjust alpha.
                         Material newmaterial = new Material(Shader.Find("Transparent/Diffuse")); 
@@ -177,6 +191,8 @@ public class BuildMolecule : MonoBehaviour
                     // Set colour (material) of bond.
                     var renderer = cylinder.GetComponent<MeshRenderer>();
                     renderer.material = colouredMaterial;
+
+                    index++;
 
                 }
 
