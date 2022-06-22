@@ -1,0 +1,23 @@
+{
+  "name": "com.chemed-vr-toolkit.clevr-molecule-generator",
+  "version": "1.1.1",
+  "displayName": "CLEVR Molecule Generator",
+  "description": "The CLEVR Molecule Generator package implements an easy to use scripting language allowing for the quick creation of ball-and-stick representations of molecules.",
+  "unity": "2020.3",
+  "author": {
+    "name": "Tom Elton",
+    "email": "telt8898@uni.sydney.edu.au",
+    "url": "https://www.linkedin.com/in/thomas-elton-a86aaa215/"
+  },
+  "keywords": [
+    "molecule",
+    "generator",
+    "chemistry",
+    "toolkit",
+    "ball-and-stick",
+    "ball",
+    "stick",
+    "CLEVR"
+  ],
+  "type": "tool"
+}
