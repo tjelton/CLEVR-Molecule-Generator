@@ -13,7 +13,8 @@ public class TextProcessing
      *      StreamReader sr : the stream reader which is reading the file we are interpreting.
      *      ref int lineNum : The number of the current line being processed.
      * Returns: string
-     *      The 
+     *      The current script line (aka next line to be processed) in the text file. 
+     *		This line has the semicolon stripped.
      */
     public static string processLine(StreamReader sr, ref int lineNum)
     {
